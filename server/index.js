@@ -2,6 +2,7 @@ import express, { json, request, response } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { mongodbURL, PORT } from "./config.js";
+import appRoutes from './routes/appRoutes.js'
 
 //Express instance
 const app = express();
@@ -27,3 +28,5 @@ mongoose
     });
   })
   .catch((error) => console.log(error));
+
+app.use('/',appRoutes);
