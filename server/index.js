@@ -3,9 +3,13 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { mongodbURL, PORT } from "./config.js";
 import appRoutes from './routes/appRoutes.js'
+import cookieParser from "cookie-parser";
 
 //Express instance
 const app = express();
+
+//Cookie-parser
+app.use(cookieParser());
 
 //Cors
 app.use(cors());

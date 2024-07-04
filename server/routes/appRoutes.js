@@ -138,12 +138,10 @@ router.post("/create/:id", async (request, response) => {
     const creatingUser = await User.find({ _id: id }).exec();
     creatingUser[0].tasks.push(createdTask);
     creatingUser[0].save();
-    return response
-      .status(200)
-      .json({
-        message: `Created a new task for the user: ${creatingUser[0].username}`,
-        body: createdTask,
-      });
+    return response.status(200).json({
+      message: `Created a new task for the user: ${creatingUser[0].username}`,
+      body: createdTask,
+    });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
@@ -200,13 +198,11 @@ router.delete("/:id", async (request, response) => {
       { $pull: { tasks: TaskObjectId } }
     );
 
-    return response
-      .status(200)
-      .json({
-        message: "Task has been deleted",
-        body: deletedTask,
-        updatedUser: updateUserTask,
-      });
+    return response.status(200).json({
+      message: "Task has been deleted",
+      body: deletedTask,
+      updatedUser: updateUserTask,
+    });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
