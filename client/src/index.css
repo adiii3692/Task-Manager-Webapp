@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.svg-icon {
+    width: 5em;
+    height: 5em;
+  }
+  
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+fill: #4691f6;
+}
+
+.svg-icon circle {
+stroke: #4691f6;
+stroke-width: 1;
+}
+
+.eczar-ad {
+  font-family: "Eczar", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.button-bg{
+  background: rgb(126, 207, 134);
+}

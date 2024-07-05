@@ -4,8 +4,17 @@ import { User } from "../models/user.model.js";
 import validator from "validator";
 import mongoose, { mongo } from "mongoose";
 
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const ObjectId = mongoose.Types.ObjectId;
+const tokenAge = 60 * 60;
+
+//Function to create a jwt
+const createToken = (userId)=>{
+  return jwt.sign({userId},'Please Do Not Share',{
+    expiresIn: tokenAge
+  });
+};
 
 //The route to sign up
 router.post("/signup", async (request, response) => {
