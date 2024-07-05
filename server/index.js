@@ -3,16 +3,15 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { mongodbURL, PORT } from "./config.js";
 import appRoutes from './routes/appRoutes.js'
-import cookieParser from "cookie-parser";
 
 //Express instance
 const app = express();
 
-//Cookie-parser
-app.use(cookieParser());
-
 //Cors
-app.use(cors());
+app.use(cors({
+  origin:['http://localhost:5173'],
+  credentials:true
+}));
 
 //Middleware to pars request body as json
 app.use(express.json());

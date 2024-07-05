@@ -8,7 +8,7 @@ const Home = () => {
     <div className="bg-blue-200 eczar-ad">
       <Header/>
       <main>
-        hello
+        
       </main>
       <Footer/>
     </div>

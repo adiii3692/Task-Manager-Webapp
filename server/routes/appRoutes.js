@@ -3,11 +3,15 @@ import { Task } from "../models/task.model.js";
 import { User } from "../models/user.model.js";
 import validator from "validator";
 import mongoose, { mongo } from "mongoose";
+import { createRequire } from 'module';
 
+const require = createRequire(import.meta.url);
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const router = express.Router();
 const ObjectId = mongoose.Types.ObjectId;
 const tokenAge = 60 * 60;
+express().use(cookieParser());
 
 //Function to create a jwt
 const createToken = (userId)=>{
@@ -61,10 +65,15 @@ router.post("/signup", async (request, response) => {
     const createdUser = new User(newUser);
     await createdUser.save();
 
+    //Create and send jwt through cookies
+    const jwToken = createToken(createdUser._id);
+    console.log("Sending cookie?")
+    response.cookie('jwt',jwToken,{httpOnly:true,maxAge:tokenAge*1000})
+
     //Return success message
     return response
-      .status(500)
-      .json({ message: "User created", body: createdUser });
+      .status(200)
+      .json({ message: "User created", body: createdUser});
   } catch (error) {
     console.log(error.message);
     return response.status(500).send({ message: error.message });
@@ -217,5 +226,7 @@ router.delete("/:id", async (request, response) => {
     return response.status(404).send({ message: error.message });
   }
 });
+
+router.get('/getcookie')
 
 export default router;
