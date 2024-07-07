@@ -3,20 +3,22 @@ import { Task } from "../models/task.model.js";
 import { User } from "../models/user.model.js";
 import validator from "validator";
 import mongoose, { mongo } from "mongoose";
-import { createRequire } from 'module';
+import { createRequire } from "module";
+import bcryptjs from "bcryptjs";
 
+const bcrypt = bcryptjs;
 const require = createRequire(import.meta.url);
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const router = express.Router();
 const ObjectId = mongoose.Types.ObjectId;
 const tokenAge = 60 * 60;
 express().use(cookieParser());
 
 //Function to create a jwt
-const createToken = (userId)=>{
-  return jwt.sign({userId},'Please Do Not Share',{
-    expiresIn: tokenAge
+const createToken = (userId) => {
+  return jwt.sign({ userId }, "jwt-userid-secret-key", {
+    expiresIn: tokenAge,
   });
 };
 
@@ -29,9 +31,10 @@ router.post("/signup", async (request, response) => {
       !request.body.email ||
       !request.body.password
     ) {
-      return response
-        .status(404)
-        .json({ message: "Please send all the required fields" });
+      return response.json({
+        validated: false,
+        message: "Please send all the required fields",
+      });
     }
 
     //Check if the username already exists in the database
@@ -39,20 +42,23 @@ router.post("/signup", async (request, response) => {
       username: request.body.username,
     }).exec();
     if (replicaUsername.length != 0)
-      return response
-        .status(404)
-        .json({ message: "Please enter a unique username" });
+      return response.json({
+        validated: false,
+        message: "Please enter a unique username",
+      });
     //Check if email already in database
     const replicaMail = await User.find({ email: request.body.email }).exec();
     if (replicaMail.length != 0)
-      return response
-        .status(404)
-        .json({ message: "Please enter a unique email" });
+      return response.json({
+        validated: false,
+        message: "Please enter a unique email",
+      });
     //Check if email is valid
     if (!validator.isEmail(request.body.email))
-      return response
-        .status(404)
-        .json({ message: "Please enter a valid email id" });
+      return response.json({
+        validated: false,
+        message: "Please enter a valid email id",
+      });
 
     //Create a new object for the user
     const newUser = {
@@ -65,15 +71,10 @@ router.post("/signup", async (request, response) => {
     const createdUser = new User(newUser);
     await createdUser.save();
 
-    //Create and send jwt through cookies
-    const jwToken = createToken(createdUser._id);
-    console.log("Sending cookie?")
-    response.cookie('jwt',jwToken,{httpOnly:true,maxAge:tokenAge*1000})
-
     //Return success message
     return response
       .status(200)
-      .json({ message: "User created", body: createdUser});
+      .json({ validated: true, message: "You have signed up!", body: createdUser });
   } catch (error) {
     console.log(error.message);
     return response.status(500).send({ message: error.message });
@@ -98,6 +99,35 @@ router.post("/login", async (request, response) => {
         .status(404)
         .json({ message: "Please enter all required fields" });
     }
+
+    //Check if username and password exist in the database
+    const checkUsername = await User.find({ username: request.body.username });
+    if (checkUsername.length == 0)
+      return response.json({
+        validated: false,
+        message: "This username does not exist",
+      });
+    const userPassword = checkUsername[0].password;
+    const checkPassword = bcrypt.compareSync(
+      request.body.password,
+      userPassword
+    );
+    if (!checkPassword)
+      return response.json({
+        validated: false,
+        message: "Please enter a valid password",
+      });
+
+    //Create a jwt token and send it using cookies
+    const jwToken = createToken(checkUsername[0]._id);
+    response.cookie("jwt", jwToken, {
+      httpOnly: true,
+      maxAge: 60* 1000,
+    });
+
+    return response
+      .status(200)
+      .json({ validated: true, message: "User logged in" });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
@@ -227,6 +257,6 @@ router.delete("/:id", async (request, response) => {
   }
 });
 
-router.get('/getcookie')
+router.get("/getcookie");
 
 export default router;
