@@ -6,6 +6,7 @@ import Signup from './pages/Signup.jsx';
 import CreateTask from './pages/CreateTask.jsx';
 import UpdateTask from './pages/UpdateTask.jsx';
 import DeleteTask from './pages/DeleteTask.jsx';
+import Logout from "./pages/Logout.jsx";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path='/create' element={<CreateTask/>}></Route>
       <Route path='/update/:id' element={<UpdateTask/>}></Route>
       <Route path='/delete/:id' element={<DeleteTask/>}></Route>
+      <Route path='/logout/:id' element={<Logout/>}></Route>
     </Routes>
   );
 };

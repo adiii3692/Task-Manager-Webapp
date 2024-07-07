@@ -81,16 +81,6 @@ router.post("/signup", async (request, response) => {
   }
 });
 
-//Checking a random route
-router.get("/signup", (request, response) => {
-  try {
-    console.log("Webpage working");
-    return response.status;
-  } catch (error) {
-    return response.status.json({ message: error.message });
-  }
-});
-
 //Route to log in
 router.post("/login", async (request, response) => {
   try {
@@ -121,7 +111,7 @@ router.post("/login", async (request, response) => {
     //Create a jwt token and send it using cookies
     const jwToken = createToken(checkUsername[0]._id);
     response.cookie("jwt", jwToken, {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: 60* 1000,
     });
 
@@ -256,7 +246,5 @@ router.delete("/:id", async (request, response) => {
     return response.status(404).send({ message: error.message });
   }
 });
-
-router.get("/getcookie");
 
 export default router;
