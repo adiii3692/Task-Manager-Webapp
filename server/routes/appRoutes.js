@@ -133,20 +133,10 @@ router.get("/receive/:id", async (request, response) => {
     const userTasks = await User.find({ _id: id });
     //Get the object Ids of the tasks as an array
     const actualTasks = userTasks[0].tasks;
-    //Loop through the array of ObjectIds to search the Tasks database and print the details of each individual task
-    actualTasks.map(async (task) => {
-      const taskName = await Task.find({ _id: task._id });
-      if (taskName.length != 0) {
-        console.log("Title: " + taskName[0].title);
-        console.log("Due Date: " + taskName[0].dueDate);
-        console.log("Description: " + taskName[0].description);
-        console.log();
-      }
-    });
 
     return response
       .status(200)
-      .json({ message: "Found User's Tasks", body: userTasks });
+      .json({ message: "Found User's Tasks", body: userTasks});
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
@@ -245,6 +235,24 @@ router.delete("/:id", async (request, response) => {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
   }
+});
+
+//Route to get info on a task
+router.get('/details/:id',async(request,response)=>{
+ try {
+  const {id} = request.params;
+
+  const taskInfo = await Task.find({_id:id});
+  console.log(taskInfo);
+
+  if (taskInfo.length===0) return response.json({message:"The task does not exist"});
+
+  return response.status(200).json({message:"Task details found",taskDetails:taskInfo[0]});
+
+ } catch (error) {
+    console.log(error.message);
+    return response.status(404).send({ message: error.message });
+ }
 });
 
 export default router;
