@@ -15,7 +15,7 @@ const Header = (props) => {
           <CiBoxList className="mx-auto my-auto text-7xl text-black-600" />
         </div>
         {/* //Show login and signup if the user hasn't logged in, else show the logout page */}
-        {props.userId === '' ? (
+        {((props.userId === '')||(!props.userId)) ? (
           <div className="grow border-b-2 border-b-indigo-500 rounded-none flex justify-evenly py-4">
             <button
               className="rounded-full px-8 py-4 button-bg"
