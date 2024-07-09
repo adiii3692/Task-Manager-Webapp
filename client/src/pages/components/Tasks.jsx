@@ -3,12 +3,15 @@ import { toast } from "react-toastify-modernize";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PORT } from "../../../../server/config.js";
+import TaskCard from "./TaskCard.jsx";
+import { IoCreate } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Tasks = (props) => {
   const notify = (response) => toast.warning(response);
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
-  const [tasksInfo,setTasksInfo] = useState([]);
+  const [tasksInfo, setTasksInfo] = useState([]);
 
   const redirect = () => {
     notify("Redirecting to login page!");
@@ -45,61 +48,71 @@ const Tasks = (props) => {
   };
 
   //function to get the task from the database and access it
-  const accessTasks = () =>{
-    if (tasks.length===0)   return notify('No Tasks as of yet!');
+  const accessTasks = () => {
+    if (tasks.length === 0) return notify("No Tasks as of yet!");
 
-    tasks.map(async (task)=>{
-        await axios.get(`http://localhost:${PORT}/details/${task}`)
-        .then((response)=>{
-            const taskArr = [];
-            taskArr.push(response.data.taskDetails);
-            // console.log(taskArr);
-            setTasksInfo(taskArr);
+    const taskArr = [];
+    tasks.map(async (task) => {
+      await axios
+        .get(`http://localhost:${PORT}/details/${task}`)
+        .then((response) => {
+          
+          taskArr.push(response.data.taskDetails);
+          // console.log(taskArr);
         })
         .catch(function (error) {
-            if (error.response) {
-              // The request was made and the server responded with a status code
-              // that falls out of the range of 2xx
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            } else if (error.request) {
-              // The request was made but no response was received
-              // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-              // http.ClientRequest in node.js
-              console.log(error.request);
-            } else {
-              // Something happened in setting up the request that triggered an Error
-              console.log("Error", error.message);
-            }
-            console.log(error.config);
-          });
-    })
-  }
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log("Error", error.message);
+          }
+          console.log(error.config);
+        });
+    });
+    setTasksInfo(taskArr);
+  };
 
   useEffect(() => {
     getTasks();
   }, []);
   useEffect(() => {
+    console.log("Tasks: "+tasks);
     accessTasks();
   }, [tasks]);
 
-  useEffect(()=>{console.log(tasksInfo)},[tasksInfo])
+  useEffect(() => {
+    console.log(tasksInfo);
+  }, [tasksInfo]);
   return (
     <div>
       Tasks for UserId: {props.userId}
       {/* <button onClick={getTasks} className="rounded-full px-8 py-4 button-bg">Get Tasks</button> */}
       {/* {(!(props.userId===''))?getTasks:redirect} */}
       <ol>
-        {tasksInfo.length == 0 ? (
-          <li key={"None"}>No Tasks Yet</li>
-        ) : (
-          tasksInfo.map((task, index) => (
-            <li key={index}>
-              {index + 1}) {task.title}
-            </li>
-          ))
-        )}
+        <div className="flex flex-col mx-auto w-[600px] justify-center items-center border-2 border-green-400 rounded-lg p-4 my-auto">
+          <div className="flex justify-end">
+            <Link to={`/create/${props.userId}`}>
+              <IoCreate className="text-3xl" />
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            {tasksInfo.length == 0 ? (
+              <li key={"None"}>No Tasks Yet</li>
+            ) : (
+              <TaskCard tasksInfo={tasksInfo} />
+            )}
+          </div>
+        </div>
       </ol>
     </div>
   );

@@ -74,7 +74,11 @@ router.post("/signup", async (request, response) => {
     //Return success message
     return response
       .status(200)
-      .json({ validated: true, message: "You have signed up!", body: createdUser });
+      .json({
+        validated: true,
+        message: "You have signed up!",
+        body: createdUser,
+      });
   } catch (error) {
     console.log(error.message);
     return response.status(500).send({ message: error.message });
@@ -112,7 +116,7 @@ router.post("/login", async (request, response) => {
     const jwToken = createToken(checkUsername[0]._id);
     response.cookie("jwt", jwToken, {
       httpOnly: false,
-      maxAge: 60* 1000,
+      maxAge: 60 * 1000,
     });
 
     return response
@@ -136,7 +140,7 @@ router.get("/receive/:id", async (request, response) => {
 
     return response
       .status(200)
-      .json({ message: "Found User's Tasks", body: userTasks});
+      .json({ message: "Found User's Tasks", body: userTasks });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
@@ -148,7 +152,10 @@ router.post("/create/:id", async (request, response) => {
   try {
     //Verify if user entered a title for the task
     if (!request.body.title)
-      return response.status(404).json({ message: "Please enter a title" });
+      return response.json({
+        validated: false,
+        message: "Please enter a title",
+      });
 
     //Make a new object for the task
     const newTask = {
@@ -166,10 +173,13 @@ router.post("/create/:id", async (request, response) => {
     const creatingUser = await User.find({ _id: id }).exec();
     creatingUser[0].tasks.push(createdTask);
     creatingUser[0].save();
-    return response.status(200).json({
-      message: `Created a new task for the user: ${creatingUser[0].username}`,
-      body: createdTask,
-    });
+    return response
+      .status(200)
+      .json({
+        validated: true,
+        message: `Created a new task for the user: ${creatingUser[0].username}`,
+        body: createdTask,
+      });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
@@ -238,21 +248,23 @@ router.delete("/:id", async (request, response) => {
 });
 
 //Route to get info on a task
-router.get('/details/:id',async(request,response)=>{
- try {
-  const {id} = request.params;
+router.get("/details/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
 
-  const taskInfo = await Task.find({_id:id});
-  console.log(taskInfo);
+    const taskInfo = await Task.find({ _id: id });
+    console.log(taskInfo);
 
-  if (taskInfo.length===0) return response.json({message:"The task does not exist"});
+    if (taskInfo.length === 0)
+      return response.json({ message: "The task does not exist" });
 
-  return response.status(200).json({message:"Task details found",taskDetails:taskInfo[0]});
-
- } catch (error) {
+    return response
+      .status(200)
+      .json({ message: "Task details found", taskDetails: taskInfo[0] });
+  } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
- }
+  }
 });
 
 export default router;
