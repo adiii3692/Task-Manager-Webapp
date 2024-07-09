@@ -1,12 +1,17 @@
 import React from "react";
+import TaskModal from "./TaskModal.jsx";
+import { BiShow } from "react-icons/bi";
 
 const TaskCard = (props) => {
   return (
     <div>
-      {props.tasksInfo.map((task, index) => (
-        <li key={index}>
-          {index + 1}) {task.title}
-        </li>
+      {props.tasks.map((task, index) => (
+        <div key={index} className="flex gap-x-4">
+          <li key={task._id}>
+            {index + 1}) {task.title}
+          </li>
+          <BiShow key={index} className="inline-flex"/>
+        </div>
       ))}
     </div>
   );

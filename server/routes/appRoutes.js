@@ -137,10 +137,11 @@ router.get("/receive/:id", async (request, response) => {
     const userTasks = await User.find({ _id: id });
     //Get the object Ids of the tasks as an array
     const actualTasks = userTasks[0].tasks;
+    const foundTasks = await Task.find({_id:{$in:actualTasks}});
 
     return response
       .status(200)
-      .json({ message: "Found User's Tasks", body: userTasks });
+      .json({ message: "Found User's Tasks", body: foundTasks });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
@@ -241,26 +242,6 @@ router.delete("/:id", async (request, response) => {
       body: deletedTask,
       updatedUser: updateUserTask,
     });
-  } catch (error) {
-    console.log(error.message);
-    return response.status(404).send({ message: error.message });
-  }
-});
-
-//Route to get info on a task
-router.get("/details/:id", async (request, response) => {
-  try {
-    const { id } = request.params;
-
-    const taskInfo = await Task.find({ _id: id });
-    console.log(taskInfo);
-
-    if (taskInfo.length === 0)
-      return response.json({ message: "The task does not exist" });
-
-    return response
-      .status(200)
-      .json({ message: "Task details found", taskDetails: taskInfo[0] });
   } catch (error) {
     console.log(error.message);
     return response.status(404).send({ message: error.message });
