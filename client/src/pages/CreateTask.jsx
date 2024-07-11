@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify-modernize";
 import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
 import axios from "axios";
 import { PORT } from "../../../server/config.js";
 
@@ -54,7 +53,7 @@ const CreateTask = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col h-full bg-image">
       <Header userId={id}/>
       <div className="p-4 flex justify-center">
         <h1 className="text-3xl">Create Task</h1>
@@ -91,7 +90,6 @@ const CreateTask = () => {
           Sign Up!
         </button>
       </div>
-      <Footer />
     </div>
   );
 };

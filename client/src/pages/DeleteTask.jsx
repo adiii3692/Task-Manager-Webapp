@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify-modernize";
 import axios from "axios";
 import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
 import { PORT } from "../../../server/config.js";
 
 const DeleteTask = () => {
@@ -71,7 +70,7 @@ const DeleteTask = () => {
   useEffect(()=>{getOgTask()},[]);
 
   return (
-    <div>
+    <div className="flex flex-col h-full bg-image">
       <Header userId={id} />
       <div className="p-4 flex justify-center">
         <h1 className="text-3xl">Delete Task</h1>
@@ -113,7 +112,6 @@ const DeleteTask = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
 import Tasks from "./components/Tasks.jsx";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
@@ -23,16 +22,11 @@ const Home = () => {
   useEffect(getCookies, []);
 
   return (
-    <div className="flex flex-col h-full eczar-ad">
-      <div className="h-full bg-image">
-        <Header userId={userId} />
+    <div className="flex flex-col h-full bg-image text-white">
+      <Header userId={userId} />
         <main>
           {userId === "" ? "Not logged in yet" : <Tasks userId={userId} />}
         </main>
-      </div>
-      {/* <div>
-        <Footer />
-      </div> */}
     </div>
   );
 };

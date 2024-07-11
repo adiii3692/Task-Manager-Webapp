@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
 import axios from "axios";
 import { PORT } from "../../../server/config.js";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +51,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col h-full bg-image">
       <Header />
       <div className="p-4 flex justify-center">
         <h1 className="text-3xl">Sign Up</h1>
@@ -89,7 +88,6 @@ const Signup = () => {
           Sign Up!
         </button>
       </div>
-      <Footer />
     </div>
   );
 };
