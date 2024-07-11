@@ -24,8 +24,8 @@ const Home = () => {
   return (
     <div className="flex flex-col h-full bg-image text-white">
       <Header userId={userId} />
-        <main>
-          {userId === "" ? "Not logged in yet" : <Tasks userId={userId} />}
+        <main className="flex justify-center items-center flex-1">
+          {userId === "" ? (<h1 className="text-3xl relative nav">Not logged in yet</h1>) : <Tasks userId={userId} />}
         </main>
     </div>
   );

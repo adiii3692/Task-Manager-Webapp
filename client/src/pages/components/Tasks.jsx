@@ -55,10 +55,7 @@ const Tasks = (props) => {
   }, [tasks]);
 
   return (
-    <div>
-      Tasks for UserId: {props.userId}
-      {/* <button onClick={getTasks} className="rounded-full px-8 py-4 button-bg">Get Tasks</button> */}
-      {/* {(!(props.userId===''))?getTasks:redirect} */}
+    <div className="bg-black bg-opacity-50">
       <ol>
         <div className="flex mx-auto w-[600px] justify-center items-center border-2 border-green-400 rounded-lg p-4 my-auto gap-x-4">
           <div className="flex justify-end">

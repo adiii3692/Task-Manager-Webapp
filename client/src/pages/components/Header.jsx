@@ -17,7 +17,7 @@ const Header = (props) => {
   return (
     <header className="flex justify-evenly items-center px-8 py-4 text-white">
       <div className="grow rounded-none pt-10 pb-4 font-bold text-3xl">
-        <button onClick={() => navigate("/")}>To Do App</button>
+        <button onClick={() => navigate("/")} className="relative nav">To Do App</button>
       </div>
       <div className="grow">
         <CiBoxList className="mx-auto my-auto text-7xl text-black-600" onClick={() => navigate("/")}/>
@@ -25,17 +25,17 @@ const Header = (props) => {
       {/* //Show login and signup if the user hasn't logged in, else show the logout page */}
       {props.userId === "" || !props.userId ? (
         <div className="grow rounded-none flex justify-evenly py-4">
-          <button className="px-8 py-4" onClick={() => navigate("/login")}>
-            LOGIN
+          <button className="px-8 py-4 text-xl relative nav" onClick={() => navigate("/login")}>
+            Login
           </button>
-          <button className="px-8 py-4" onClick={() => navigate("/signup")}>
-            SIGNUP
+          <button className="px-8 py-4 text-xl relative nav" onClick={() => navigate("/signup")}>
+            Signup
           </button>
         </div>
       ) : (
-        <div className="grow rounded-none flex justify-evenly py-4">
-          <button className="px-8 py-4" onClick={logout}>
-            LOGOUT
+        <div className="grow rounded-none flex justify-evenly py-4 relative nav">
+          <button className="px-8 py-4 text-xl" onClick={logout}>
+            Logout
           </button>
         </div>
       )}

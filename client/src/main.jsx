@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       pauseOnFocusLoss
       draggable
       pauseOnHover={false}
-      theme="light"
+      theme="dark"
       transition:Bounce
     />
   </BrowserRouter>
