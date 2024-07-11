@@ -1,5 +1,8 @@
 import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
+import { MdOutlineDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const TaskModal = ({ task, onClose }) => {
   return (
@@ -9,7 +12,7 @@ const TaskModal = ({ task, onClose }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[600px] max-w-full h-fit bg-white rounded-xl p-4 flex flex-col relative"
       >
         <AiOutlineCloseCircle
           className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
@@ -24,6 +27,14 @@ const TaskModal = ({ task, onClose }) => {
         </div>
         <div className="flex justify-start items-center gap-x-2">
           <h2 className="my-1">{task.description}</h2>
+        </div>
+        <div className="flex justify-evenly items-center p-4">
+          <Link to={`/update/${task._id}`}>
+            <AiOutlineEdit className="text-2xl text-yellow-800 hover:text-black"></AiOutlineEdit>
+          </Link>
+          <Link to={`/delete/${task._id}`}>
+            <MdOutlineDelete className="text-2xl text-red-800 hover:text-black"></MdOutlineDelete>
+          </Link>
         </div>
       </div>
     </div>

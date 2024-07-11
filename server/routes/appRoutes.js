@@ -248,4 +248,18 @@ router.delete("/:id", async (request, response) => {
   }
 });
 
+//Route to get the task's info
+router.get('/info/:id',async(request,response)=>{
+  try {
+    const {id} = request.params;
+    const taskInfo = await Task.find({_id:id});
+    const finalInfo = taskInfo[0];
+    console.log(finalInfo);
+    return response.status(200).json({message:"Found Task!",taskInfo:finalInfo})
+  } catch (error) {
+    console.log(error.message);
+    return response.status(404).send({ message: error.message });
+  }
+});
+
 export default router;

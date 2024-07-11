@@ -17,7 +17,7 @@ const App = () => {
       <Route path='/create/:id' element={<CreateTask/>}></Route>
       <Route path='/update/:id' element={<UpdateTask/>}></Route>
       <Route path='/delete/:id' element={<DeleteTask/>}></Route>
-      <Route path='/logout/:id' element={<Logout/>}></Route>
+      <Route path='/logout' element={<Logout/>}></Route>
     </Routes>
   );
 };

@@ -70,7 +70,7 @@ const Tasks = (props) => {
             {tasks.length == 0 ? (
               <li key={"None"}>No Tasks Yet</li>
             ) : (
-              <TaskCard tasks={tasks} />
+              tasks.map((task,index)=>(<TaskCard task={task} index={index} key={index}/>))
             )}
           </div>
         </div>

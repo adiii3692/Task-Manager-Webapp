@@ -1,9 +1,18 @@
 import React from "react";
 import { CiBoxList } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import { toast } from "react-toastify-modernize";
 
 const Header = (props) => {
   const navigate = useNavigate();
+  const notify = (response) => toast.success(response);
+
+  const logout = ()=>{
+    Cookies.remove('jwt');
+    navigate('/logout');
+    notify('User successfully logged out!');
+  };
 
   return (
     <div className="bg-blue-200 eczar-ad">
@@ -34,7 +43,7 @@ const Header = (props) => {
           <div className="grow border-b-2 border-b-indigo-500 rounded-none flex justify-evenly py-4">
             <button
               className="rounded-full px-8 py-4 button-bg"
-              onClick={() => navigate(`/logout/${props.userId}`)}
+              onClick={logout}
             >
               LOGOUT
             </button>

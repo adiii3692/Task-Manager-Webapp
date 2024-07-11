@@ -16,7 +16,6 @@ const Home = () => {
  
     const token = Cookies.get('jwt');
     if (!token){
-      notify('You need to login to access your tasks');
       return;
     } 
     const decodedJwt = jwtDecode(token);
