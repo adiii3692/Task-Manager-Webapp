@@ -2,7 +2,7 @@ import express, { response } from "express";
 import { Task } from "../models/task.model.js";
 import { User } from "../models/user.model.js";
 import validator from "validator";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import { createRequire } from "module";
 import bcryptjs from "bcryptjs";
 

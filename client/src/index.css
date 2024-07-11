@@ -4,6 +4,23 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  box-sizing: border-box;
+}
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+.bg-image{
+  background: url('../public/background.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .svg-icon {
     width: 5em;
     height: 5em;
@@ -29,4 +46,8 @@ stroke-width: 1;
 
 .button-bg{
   background: rgb(126, 207, 134);
+}
+
+.gradient{
+  background: linear-gradient(to right, #00093c, #2d0b00);
 }

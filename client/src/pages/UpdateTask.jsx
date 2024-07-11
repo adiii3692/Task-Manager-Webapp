@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify-modernize";
 import axios from "axios";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import { PORT } from "../../../server/config.js";
 
 const UpdateTask = () => {
 
@@ -19,6 +20,33 @@ const UpdateTask = () => {
     title: title,
     dueDate: dueDate,
     description: description
+  }
+
+  const getOgTask = ()=>{
+    axios.get(`http://localhost:${PORT}/info/${id}`)
+    .then((response)=>{
+      setTitle(response.data.taskInfo.title);
+      setDueDate(response.data.taskInfo.dueDate);
+      setDescription(response.data.taskInfo.description);
+    })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    });
   }
 
   const updateTask = ()=>{
@@ -46,6 +74,8 @@ const UpdateTask = () => {
       console.log(error.config);
     });
   }
+
+  useEffect(()=>{getOgTask()},[]);
 
   return (
     <div>
@@ -76,7 +106,6 @@ const UpdateTask = () => {
           <label className="text-xl mr-4 text-gray-500">Due Date</label>
           <input
             type="date"
-            value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
