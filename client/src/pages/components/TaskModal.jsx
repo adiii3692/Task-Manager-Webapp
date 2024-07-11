@@ -11,14 +11,19 @@ const TaskModal = ({ task, onClose }) => {
         onClick={(e) => e.stopPropagation()}
         className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
       >
-        <AiOutlineCloseCircle className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer" onClick={onClose}/>
-        <h2 className="w-fit px-4 py-1 bg-red-300 rounded-lg">{task.dueDate}</h2>
+        <AiOutlineCloseCircle
+          className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
+          onClick={onClose}
+        />
+        <h2 className="w-fit px-4 py-1 bg-red-300 rounded-lg">
+          {task.dueDate}
+        </h2>
         <h4 className="my-2 text-gray-500">{task._id}</h4>
         <div className="flex justify-start items-center gap-x-2">
-            <h2 className="my-1">{task.title}</h2>
+          <h2 className="my-1">{task.title}</h2>
         </div>
         <div className="flex justify-start items-center gap-x-2">
-            <h2 className="my-1">{task.title}</h2>
+          <h2 className="my-1">{task.description}</h2>
         </div>
       </div>
     </div>
