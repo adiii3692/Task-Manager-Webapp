@@ -9,7 +9,7 @@ const app = express();
 
 //Cors
 app.use(cors({
-  origin:['https://todo-n8pt.onrender.com'],
+  origin:['https://adfirstmernapp.netlify.app'],
   credentials:true
 }));
 
