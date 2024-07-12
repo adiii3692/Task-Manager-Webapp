@@ -6,7 +6,7 @@
 
 *{
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 html{
@@ -63,4 +63,20 @@ stroke-width: 1;
 
 .nav:hover::before{
   width: 100%;
+}
+
+.p-white input::placeholder{
+  color: white;
+}
+
+.blur-bg{
+  backdrop-filter: blur(20px);
+}
+
+.bg-shadow{
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2)
+}
+
+.wrapper-border{
+  border: 2px solid rgba(255, 255, 255, .2);
 }

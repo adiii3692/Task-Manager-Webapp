@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import axios from "axios";
 import { PORT } from "../../../server/config.js";
@@ -47,33 +47,41 @@ const Login = () => {
       });
   };
   return (
-    <div className="flex flex-col h-full bg-image">
+    <div className="flex flex-col h-full bg-image text-white">
       <Header />
-      <div className="p-4 flex justify-center">
-        <h1 className="text-3xl">Login</h1>
-      </div>
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Username</label>
+      <div className="flex flex-col wrapper-border rounded-xl w-[400px] my-8 p-4 mx-auto bg-transparent blur-bg bg-shadow">
+        <div className="p-4 flex justify-center">
+          <h1 className="text-3xl font-bold">Login</h1>
+        </div>
+        <div className="my-4 p-white">
           <input
             type="text"
+            placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Password</label>
+        <div className="my-4 p-white">
           <input
             type="password"
             value={password}
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent rounded-full px-4 py-2 w-full"
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={logUser}>
-          Login!
+        <button className="p-2 bg-white m-8 rounded-full" onClick={logUser}>
+          <span className="text-black">Login!</span>
         </button>
+        <div className="flex justify-center">
+          <p>
+            Don't have an account?{" "}
+            <Link to={"/signup"}>
+              <a href="" className="underline">Register</a>
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

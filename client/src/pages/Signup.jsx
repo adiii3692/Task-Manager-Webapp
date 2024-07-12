@@ -53,35 +53,35 @@ const Signup = () => {
   return (
     <div className="flex flex-col h-full bg-image">
       <Header />
-      <div className="p-4 flex justify-center">
-        <h1 className="text-3xl">Sign Up</h1>
-      </div>
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+      <div className="flex flex-col wrapper-border rounded-xl w-[400px] p-4 mx-auto text-white">
+        <div className="p-4 flex justify-center">
+          <h1 className="text-3xl font-bold">Sign Up</h1>
+        </div>
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Username</label>
           <input
             type="text"
             value={username}
+            placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Email</label>
           <input
             type="text"
             value={email}
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Password</label>
           <input
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
         <button className="p-2 bg-sky-300 m-8" onClick={createUser}>
