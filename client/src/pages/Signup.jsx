@@ -24,7 +24,7 @@ const Signup = () => {
     };
 
     axios
-      .post(`https://todo-4j7c.onrender.com/signup`, userData)
+      .post(`https://todo-n8pt.onrender.com/signup`, userData)
       .then((response) => {
         if (response.data.validated) navigate("/login");
         (response.data.validated)?notifySuccess(response):notify(response);

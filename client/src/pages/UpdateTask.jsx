@@ -22,7 +22,7 @@ const UpdateTask = () => {
   }
 
   const getOgTask = ()=>{
-    axios.get(`https://todo-4j7c.onrender.com/info/${id}`)
+    axios.get(`https://todo-n8pt.onrender.com/info/${id}`)
     .then((response)=>{
       setTitle(response.data.taskInfo.title);
       setDueDate(response.data.taskInfo.dueDate);
@@ -49,7 +49,7 @@ const UpdateTask = () => {
   }
 
   const updateTask = ()=>{
-    axios.put(`https://todo-4j7c.onrender.com/update/${id}`,updatedTask)
+    axios.put(`https://todo-n8pt.onrender.com/update/${id}`,updatedTask)
     .then(()=>{
       notify('Updated Task!');
       navigate('/');

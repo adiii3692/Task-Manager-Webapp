@@ -9,7 +9,7 @@ const app = express();
 
 //Cors
 app.use(cors({
-  origin:['https://todo-4j7c.onrender.com'],
+  origin:['https://todo-n8pt.onrender.com'],
   credentials:true
 }));
 
