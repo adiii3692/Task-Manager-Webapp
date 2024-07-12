@@ -51,13 +51,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-image">
+    <div className="flex flex-col h-full bg-image text-white">
       <Header />
-      <div className="flex flex-col wrapper-border rounded-xl w-[400px] p-4 mx-auto text-white">
+      <div className="flex flex-col wrapper-border rounded-xl w-[400px] my-8 p-4 mx-auto bg-transparent blur-bg bg-shadow">
         <div className="p-4 flex justify-center">
           <h1 className="text-3xl font-bold">Sign Up</h1>
         </div>
-        <div className="my-4">
+        <div className="my-4 p-white">
           <input
             type="text"
             value={username}
@@ -66,7 +66,7 @@ const Signup = () => {
             className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <div className="my-4">
+        <div className="my-4 p-white">
           <input
             type="text"
             value={email}
@@ -75,7 +75,7 @@ const Signup = () => {
             className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <div className="my-4">
+        <div className="my-4 p-white">
           <input
             type="password"
             placeholder="Password"
@@ -84,8 +84,8 @@ const Signup = () => {
             className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={createUser}>
-          Sign Up!
+        <button className="p-2 bg-white m-8 rounded-full" onClick={createUser}>
+          <span className="text-black">Sign Up!</span>
         </button>
       </div>
     </div>

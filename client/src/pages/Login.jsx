@@ -78,7 +78,7 @@ const Login = () => {
           <p>
             Don't have an account?{" "}
             <Link to={"/signup"}>
-              <a href="" className="underline">Register</a>
+              <span className="underline">Register</span>
             </Link>
           </p>
         </div>

@@ -77,40 +77,37 @@ const UpdateTask = () => {
   useEffect(()=>{getOgTask()},[]);
 
   return (
-    <div className="flex flex-col h-full bg-image">
+    <div className="flex flex-col h-full bg-image text-white">
       <Header userId={id} />
-      <div className="p-4 flex justify-center">
-        <h1 className="text-3xl">Update Task</h1>
-      </div>
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Task Title</label>
+      <div className="flex flex-col wrapper-border rounded-xl w-[400px] my-8 p-4 mx-auto bg-transparent blur-bg bg-shadow">
+        <div className="p-4 flex justify-center">
+          <h1 className="text-3xl font-bold">Update Task</h1>
+        </div>
+        <div className="my-4 p-white">
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Description</label>
+        <div className="my-4 p-white">
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Due Date</label>
+        <div className="my-4 p-white">
           <input
             type="date"
             onChange={(e) => setDueDate(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={updateTask}>
-          Update!
+        <button className="p-2 bg-white m-8 rounded-full" onClick={updateTask}>
+          <span className="text-black">Update</span>
         </button>
       </div>
     </div>

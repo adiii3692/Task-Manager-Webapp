@@ -12,7 +12,7 @@ const TaskModal = ({ task, onClose }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-[600px] max-w-full h-fit bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[600px] max-w-full h-fit bg-white bg-blur rounded-xl p-4 flex flex-col relative"
       >
         <AiOutlineCloseCircle
           className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"

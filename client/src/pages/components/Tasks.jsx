@@ -55,21 +55,22 @@ const Tasks = (props) => {
   }, [tasks]);
 
   return (
-    <div className="bg-black bg-opacity-50">
+    <div className="flex flex-col absolute top-10 wrapper-border rounded-xl w-[400px] my-8 p-4 mx-auto bg-transparent blur-bg bg-shadow">
+      <div className="p-4 flex justify-center">
+        <h1 className="text-3xl font-bold">Your To Do Tasks</h1>
+      </div>
       <ol>
-        <div className="flex mx-auto w-[600px] justify-center items-center border-2 border-green-400 rounded-lg p-4 my-auto gap-x-4">
-          <div className="flex justify-end">
-            <Link to={`/create/${props.userId}`}>
-              <IoCreate className="text-3xl" />
-            </Link>
-          </div>
-          <div className="flex flex-col">
-            {tasks.length == 0 ? (
-              <li key={"None"}>No Tasks Yet</li>
-            ) : (
-              tasks.map((task,index)=>(<TaskCard task={task} index={index} key={index}/>))
-            )}
-          </div>
+        <div className="flex justify-end p-4">
+          <Link to={`/create/${props.userId}`}>
+            <IoCreate className="text-3xl" />
+          </Link>
+        </div>
+        <div className="flex flex-col justify-center items-center p-4">
+          {tasks.length == 0 ? (
+            <li key={"None"} className="p-4">Hmmm, why so empty &#x1f914;</li>
+          ) : (
+            tasks.map((task,index)=>(<TaskCard task={task} index={index} key={index}/>))
+          )}
         </div>
       </ol>
     </div>

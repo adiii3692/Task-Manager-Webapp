@@ -254,7 +254,6 @@ router.get('/info/:id',async(request,response)=>{
     const {id} = request.params;
     const taskInfo = await Task.find({_id:id});
     const finalInfo = taskInfo[0];
-    console.log(finalInfo);
     return response.status(200).json({message:"Found Task!",taskInfo:finalInfo})
   } catch (error) {
     console.log(error.message);

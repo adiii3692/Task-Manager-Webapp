@@ -70,47 +70,41 @@ const DeleteTask = () => {
   useEffect(()=>{getOgTask()},[]);
 
   return (
-    <div className="flex flex-col h-full bg-image">
+    <div className="flex flex-col h-full bg-image text-white">
       <Header userId={id} />
-      <div className="p-4 flex justify-center">
-        <h1 className="text-3xl">Delete Task</h1>
-      </div>
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+      <div className="flex flex-col wrapper-border rounded-xl w-[400px] my-8 p-4 mx-auto bg-transparent blur-bg bg-shadow">
+        <div className="p-4 flex justify-center">
+          <h1 className="text-3xl font-bold">Delete Task</h1>
+        </div>
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Task Title</label>
           <input
             disabled
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Description</label>
           <input
             disabled
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Due Date</label>
           <input
             disabled
             type="date"
             onChange={(e) => setDueDate(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="wrapper-border bg-transparent text-white px-4 py-2 w-full rounded-full"
           />
         </div>
-        <div className="flex flex-col items-center">
-          <h3 className='text-2xl'>Are you sure you want to delete this book?</h3>
-          <button className="p-2 bg-sky-300 m-8" onClick={deleteTask}>
-            Delete!
-          </button>
-        </div>
+        <button className="p-2 bg-white m-8 rounded-full" onClick={deleteTask}>
+            <span className="text-black">Delete</span>
+        </button>
       </div>
     </div>
   )
