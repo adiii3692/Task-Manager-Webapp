@@ -23,7 +23,7 @@ const CreateTask = () => {
       dueDate: dueDate
     };
 
-    axios.post(`http://localhost:${PORT}/create/${id}`,newTask)
+    axios.post(`https://todo-4j7c.onrender.com/create/${id}`,newTask)
     .then((response)=>{
       if (!(response.data.validated)){
         notify(response);

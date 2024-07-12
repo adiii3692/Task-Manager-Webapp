@@ -4,7 +4,6 @@ import { MdOutlineDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const TaskCard = ({ task, index }) => {
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <div key={index} className="flex justify-evenly items-center gap-x-4">

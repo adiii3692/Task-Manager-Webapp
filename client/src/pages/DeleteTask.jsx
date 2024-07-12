@@ -16,7 +16,7 @@ const DeleteTask = () => {
   const [description,setDescription] = useState('');
 
   const getOgTask = ()=>{
-    axios.get(`http://localhost:${PORT}/info/${id}`)
+    axios.get(`https://todo-4j7c.onrender.com/info/${id}`)
     .then((response)=>{
       setTitle(response.data.taskInfo.title);
       setDueDate(response.data.taskInfo.dueDate);
@@ -43,7 +43,7 @@ const DeleteTask = () => {
   };
 
   const deleteTask = ()=>{
-    axios.delete(`http://localhost:${PORT}/${id}`)
+    axios.delete(`https://todo-4j7c.onrender.com/${id}`)
     .then(()=>{
       notify('Task Deleted!');
       navigate('/');

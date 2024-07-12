@@ -9,7 +9,7 @@ const app = express();
 
 //Cors
 app.use(cors({
-  origin:['http://localhost:5173'],
+  origin:['https://todo-4j7c.onrender.com'],
   credentials:true
 }));
 
