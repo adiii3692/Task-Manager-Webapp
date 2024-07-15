@@ -118,7 +118,7 @@ router.post("/login", async (request, response) => {
       sameSite: 'None',
       secure: true,
       domain: 'onrender.com',
-      path: '/',
+      path: '/login',
       httpOnly: false,
       maxAge: 60 * 1000 * 60,
 
