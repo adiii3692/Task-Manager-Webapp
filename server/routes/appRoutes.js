@@ -117,6 +117,7 @@ router.post("/login", async (request, response) => {
     response.cookie("jwt", jwToken, {
       httpOnly: false,
       maxAge: 60 * 1000,
+      domain: 'https://adfirstmernapp.netlify.app',
       sameSite: 'none',
       secure: true
     });
