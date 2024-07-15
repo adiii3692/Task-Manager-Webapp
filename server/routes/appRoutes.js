@@ -116,8 +116,7 @@ router.post("/login", async (request, response) => {
     const jwToken = createToken(checkUsername[0]._id);
     response.cookie("jwt", jwToken, {
       httpOnly: false,
-      maxAge: 60 * 1000 * 60,
-      domain: '.netlify.app'
+      maxAge: 60 * 1000 * 60
     });
 
     return response
