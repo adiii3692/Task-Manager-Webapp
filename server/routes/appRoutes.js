@@ -117,6 +117,8 @@ router.post("/login", async (request, response) => {
     response.cookie("jwt", jwToken, {
       httpOnly: false,
       maxAge: 60 * 1000,
+      sameSite: 'none',
+      secure: true
     });
 
     return response
