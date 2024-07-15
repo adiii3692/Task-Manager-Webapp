@@ -116,7 +116,8 @@ router.post("/login", async (request, response) => {
     const jwToken = createToken(checkUsername[0]._id);
     response.cookie("jwt", jwToken, {
       sameSite: 'None',
-      domain: '.onrender.com',
+      secure: true,
+      
       httpOnly: false,
       maxAge: 60 * 1000 * 60,
 
