@@ -115,6 +115,7 @@ router.post("/login", async (request, response) => {
     //Create a jwt token and send it using cookies
     const jwToken = createToken(checkUsername[0]._id);
     response.cookie("jwt", jwToken, {
+      sameSite: 'none',
       path: '/',
       httpOnly: false,
       maxAge: 60 * 1000 * 60,
