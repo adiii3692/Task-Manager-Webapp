@@ -9,7 +9,7 @@ const app = express();
 
 //Cors
 app.use(cors({
-  origin:['https://todo-client-jcyk.onrender.com'],
+  origin:true,
   credentials:true
 }));
 
