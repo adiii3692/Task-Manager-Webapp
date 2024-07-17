@@ -119,7 +119,7 @@ router.post("/login", async (request, response) => {
       secure: true,
       path: '/',
       httpOnly: false,
-      maxAge: 60 * 1000 * 60,
+      maxAge: 60 * 1000 * 10,
 
     });
 

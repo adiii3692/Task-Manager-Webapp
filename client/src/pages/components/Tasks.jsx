@@ -24,7 +24,7 @@ const Tasks = (props) => {
   //Get the user's tasks
   const getTasks = () => {
     axios
-      .get(`https://todo-n8pt.onrender.com/receive/${props.userId}`)
+      .get(`http://localhost:5555/receive/${props.userId}`)
       .then((response) => {
         setTasks(response.data.body);
         setLoading(false);

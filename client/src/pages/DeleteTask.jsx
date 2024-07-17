@@ -16,7 +16,7 @@ const DeleteTask = () => {
   const [description,setDescription] = useState('');
 
   const getOgTask = ()=>{
-    axios.get(`https://todo-n8pt.onrender.com/info/${id}`)
+    axios.get(`http://localhost:5555/info/${id}`)
     .then((response)=>{
       setTitle(response.data.taskInfo.title);
       setDueDate(response.data.taskInfo.dueDate);
@@ -43,7 +43,7 @@ const DeleteTask = () => {
   };
 
   const deleteTask = ()=>{
-    axios.delete(`https://todo-n8pt.onrender.com/${id}`)
+    axios.delete(`http://localhost:5555/${id}`)
     .then(()=>{
       notify('Task Deleted!');
       navigate('/');
