@@ -26,26 +26,26 @@ This project is a simple to do list app made using the MERN stack
 * Users can logout upon logging all of their tasks
 
 ## How to run the webapp?
-* It is recommended to open all the files in a code editor such as VS Code (Preferably)
-* If not already downloaded, you need to ensure that you have downloaded the latest version of [Node.js](https://nodejs.org/en/download/package-manager).
-* After downloading Node.js and the necessary code editor, you need to use the code editor to open the 'ToDo' folder on your device
-* The code editor **MUST** be opened into the directory in which all the files are located
-* After opening the code editor into the 'ToDo' folder, create a new terminal session on VS Code and run the following command:
+1. It is recommended to open all the files in a code editor such as VS Code (Preferably)
+2. If not already downloaded, you need to ensure that you have downloaded the latest version of [Node.js](https://nodejs.org/en/download/package-manager).
+3. After downloading Node.js and the necessary code editor, you need to use the code editor to open the 'ToDo' folder on your device
+4. The code editor **MUST** be opened into the directory in which all the files are located
+5. After opening the code editor into the 'ToDo' folder, create a new terminal session on VS Code and run the following command:
   
 ```
 cd server
 npm run build
 npm run dev
 ```
-* Upon entering the following commands nodemon should execute the index.js file and make a connection to the MongoDB databse
-* Additionally, the app should be listening to **port: 5555**
-* Next, make another terminal session, making sure not to terminate the session on which the server is running
-* Run the following commands on the new terminal session:
+6. Upon entering the following commands nodemon should execute the index.js file and make a connection to the MongoDB databse
+7. Additionally, the app should be listening to **port: 5555**
+8. Next, make another terminal session, making sure not to terminate the session on which the server is running
+9. Run the following commands on the new terminal session:
 
 ```
 cd client
 npm i
 npm run dev
 ```
-* After running the commands, the vite react app should run on a localhost web server link mentioned on the command line
-* Click on the link to open the webapp and enjoy !!
+10. After running the commands, the vite react app should run on a localhost web server link mentioned on the command line
+11. Click on the link to open the webapp and enjoy !!
