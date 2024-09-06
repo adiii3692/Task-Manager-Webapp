@@ -18,7 +18,7 @@ app.use(express.json());
 
 //Landing page for the app
 app.get("/", (request, response) => {
-  return response.send("Welcome to AD's To Do App");
+  return response.send("Welcome to AD's To Do App On Docker");
 });
 
 //Establish mongoDB connection

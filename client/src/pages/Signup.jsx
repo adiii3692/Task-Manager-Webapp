@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Header from "./components/Header.jsx";
 import axios from "axios";
-import { PORT } from "../../../server/config.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify-modernize";
 

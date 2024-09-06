@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import axios from "axios";
-import { PORT } from "../../../server/config.js";
 import { toast } from "react-toastify-modernize";
 
 const Login = () => {

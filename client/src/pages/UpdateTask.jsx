@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify-modernize";
 import axios from "axios";
 import Header from "./components/Header.jsx";
-import { PORT } from "../../../server/config.js";
 
 const UpdateTask = () => {
 
